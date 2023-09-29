@@ -1,20 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-# Check if docker container is running
-if docker ps -a | grep -q 'samplerunning'; then
-    echo "Removing existing samplerunning container"
-    docker stop samplerunning
-    docker rm samplerunning
-fi
-
-# Check if tempdir already exists and create it if it doesnt
-if [ ! -d "tempdir" ]; then
-    mkdir tempdir
-    mkdir tempdir/templates
-    mkdir tempdir/static
-fi
-
+mkdir tempdir
+mkdir tempdir/templates
+mkdir tempdir/static
 
 cp sample_app.py tempdir/.
 cp -r templates/* tempdir/templates/.
@@ -33,4 +22,4 @@ _EOF_
 cd tempdir || exit
 docker build -t sampleapp .
 docker run -t -d -p 5050:5050 --name samplerunning sampleapp
-docker ps -a
+docker ps -a 
