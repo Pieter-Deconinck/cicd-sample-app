@@ -8,7 +8,7 @@ node {
     stage('Build') {
         build 'BuildSampleApp'
     }
-    stage('Resultst') {
+    stage('Results') {
         build 'TestSampleApp'
     }
 }
