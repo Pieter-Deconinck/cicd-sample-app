@@ -5,6 +5,8 @@ from flask import render_template
 
 sample = Flask(__name__)
 
+gold = 1
+
 @sample.route("/")
 def main():
     return render_template("index.html")
